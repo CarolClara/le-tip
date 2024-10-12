@@ -5,6 +5,7 @@
       id="monetary-input"
       v-model="model"
       :prepend-inner-icon="`mdi-currency-${currency}`"
+      autocomplete="off"
       class="monetary-input__field"
       color="secondary"
       outlined
@@ -26,8 +27,8 @@ export default defineComponent({
     },
   },
   data: () => ({
-    maskedMonetaryValue: "0",
-    oldValue: undefined,
+    amount: "0",
+    oldAmount: undefined,
     currencyLocale: {
       usd: "en-US",
       eur: "en-GB",
@@ -36,37 +37,31 @@ export default defineComponent({
   computed: {
     model: {
       get: function () {
-        if (this.maskedMonetaryValue?.length > 0) {
-          return this.maskMoneyFormat(this.maskedMonetaryValue);
+        if (this.amount?.length > 0) {
+          return this.maskMoneyFormat(this.amount);
         }
-        return this.maskedMonetaryValue;
+        return this.amount;
       },
       set: function (newValue) {
-        this.$data.maskedMonetaryValue = this.unmaskMoneyFormat(newValue);
+        this.$data.amount = this.unmaskMoneyFormat(newValue);
       },
     },
   },
   methods: {
     handleFocus() {
-      this.oldValue = this.maskedMonetaryValue;
+      this.oldAmount = this.amount;
       this.model = undefined;
     },
     handleBlur() {
-      if (
-        this.maskedMonetaryValue === undefined ||
-        this.maskedMonetaryValue.length === 0
-      ) {
-        this.model = this.oldValue;
+      if (this.amount === undefined || this.amount.length === 0) {
+        this.model = this.oldAmount;
       }
 
-      this.$emit(
-        "update:value",
-        this.maskMoneyFormat(this.maskedMonetaryValue)
-      );
+      this.$emit("update:value", this.maskMoneyFormat(this.amount));
     },
     maskMoneyFormat(monetaryValue) {
       if (monetaryValue?.length > 0) {
-        return Intl.NumberFormat("en-US", {
+        return Intl.NumberFormat(this.currencyLocale[this.currency], {
           minimumFractionDigits: 2,
         }).format(parseFloat(monetaryValue) / 100);
       }
@@ -83,10 +78,7 @@ export default defineComponent({
   },
   watch: {
     currency() {
-      this.$emit(
-        "update:value",
-        this.maskMoneyFormat(this.maskedMonetaryValue)
-      );
+      this.$emit("update:value", this.maskMoneyFormat(this.amount));
     },
   },
 });
