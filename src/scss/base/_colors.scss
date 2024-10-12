@@ -1,0 +1,41 @@
+.primary {
+  &--text {
+    color: $color-primary;
+  }
+}
+
+.secondary--text {
+  color: $color-secondary;
+}
+
+.tertiary--text {
+  color: $color-tertiary;
+}
+
+.info--text {
+  color: $info;
+}
+
+.success--text {
+  color: $success;
+}
+
+.warning--text {
+  color: $warning;
+}
+
+.danger--text {
+  color: $danger;
+}
+
+.color {
+  &-primary {
+    background-color: $color-primary !important;
+    color: $color-secondary !important;
+  }
+  &-secondary {
+    background-color: $color-secondary !important;
+    color: $color-secondary !important;
+  }
+}
+

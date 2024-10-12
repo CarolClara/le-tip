@@ -1,0 +1,41 @@
+.text {
+  &--sm {
+    font-size: 12px;
+  }
+
+  &--md {
+    font-size: 14px;
+  }
+
+  &--lg {
+    font-size: 14px;
+  }
+}
+
+.title {
+  &--sm {
+    font-size: 14px;
+  }
+
+  &--md {
+    font-size: 16px;
+  }
+
+  &--lg {
+    font-size: 18px;
+  }
+}
+
+.icon {
+  &--sm {
+    font-size: 14px;
+  }
+
+  &--md {
+    font-size: 16px;
+  }
+
+  &--lg {
+    font-size: 18px;
+  }
+}
