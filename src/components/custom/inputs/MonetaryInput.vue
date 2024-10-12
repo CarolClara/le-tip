@@ -7,10 +7,10 @@
       :prepend-inner-icon="`mdi-currency-${currency}`"
       autocomplete="off"
       class="monetary-input__field"
+      clearable
       color="secondary"
       outlined
       @blur="handleBlur"
-      @focus="handleFocus"
     />
   </div>
 </template>
@@ -48,16 +48,16 @@ export default defineComponent({
     },
   },
   methods: {
-    handleFocus() {
-      this.oldAmount = this.amount;
-      this.model = undefined;
-    },
     handleBlur() {
       if (this.amount === undefined || this.amount.length === 0) {
-        this.model = this.oldAmount;
+        this.model = "0";
       }
 
-      this.$emit("update:value", this.maskMoneyFormat(this.amount));
+      this.handleEmit();
+    },
+    handleEmit() {
+      this.$emit("update:amount:masked", this.maskMoneyFormat(this.amount));
+      this.$emit("update:amount:unmasked", this.amount);
     },
     maskMoneyFormat(monetaryValue) {
       if (monetaryValue?.length > 0) {
@@ -78,7 +78,7 @@ export default defineComponent({
   },
   watch: {
     currency() {
-      this.$emit("update:value", this.maskMoneyFormat(this.amount));
+      this.handleEmit();
     },
   },
 });
