@@ -2,7 +2,10 @@
   <div class="tip-view-container">
     <div class="tip-view-container--item">
       <currency-button-toggle @update:currency="handleCurrencyChange" />
-      <monetary-input :currency="currency" @update:value="handleValueChange" />
+      <monetary-input
+        :currency="currency"
+        @update:amount:masked="handleValueChange"
+      />
 
       <base-slider
         v-model="tipPercent"
