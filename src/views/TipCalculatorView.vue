@@ -90,7 +90,6 @@ export default defineComponent({
   methods: {
     handleCurrencyChange(currency) {
       this.tipStore.currency = currency;
-      this.convertAmountToBrlCurrency();
     },
     handleAmountChange(amount) {
       this.tipStore.amount = amount;
