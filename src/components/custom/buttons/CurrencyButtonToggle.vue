@@ -1,6 +1,6 @@
 <template>
   <div class="currency-button-toggle">
-    <div class="currency-button-toggle__card">
+    <div class="currency-button-toggle__card custom-card">
       <v-btn-toggle
         v-model="currentCurrency"
         borderless
@@ -63,9 +63,6 @@ export default defineComponent({
 
   &__card {
     padding: 4px;
-    box-shadow: 4px 4px 12px 2px rgba($color-secondary, 0.12);
-    border-radius: 8px;
-    background-color: $background-white;
 
     .v-btn-toggle::v-deep {
       border-radius: 8px;
@@ -92,7 +89,7 @@ export default defineComponent({
         }
 
         &:hover {
-          background-color: $color-primary-400;
+          background-color: transparentize($color-primary, 0.5);
         }
 
         &:focus {
