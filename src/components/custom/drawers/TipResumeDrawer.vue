@@ -8,25 +8,27 @@
       temporary
       @input="handleInput"
     >
-      <tip-calculator-resume-card />
-      <v-btn
-        icon
-        style="margin-top: auto; margin-left: auto"
-        @click="model = !model"
-      >
-        <v-icon>mdi-chevron-left-circle</v-icon>
-      </v-btn>
+      <div class="tip-resume-drawer__field__body">
+        <tip-resume-card class="tip-resume-drawer__field__body__card" flat />
+        <v-btn
+          class="tip-resume-drawer__field__body__btn"
+          icon
+          @click="model = !model"
+        >
+          <v-icon>mdi-chevron-left-circle</v-icon>
+        </v-btn>
+      </div>
     </v-navigation-drawer>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from "vue";
-import TipCalculatorResumeCard from "@/components/custom/cards/TipResumeCard.vue";
+import TipResumeCard from "@/components/custom/cards/TipResumeCard.vue";
 
 export default defineComponent({
   name: "TipResumeDrawer",
-  components: { TipCalculatorResumeCard },
+  components: { TipResumeCard },
   props: {
     value: { type: Boolean, required: true },
   },
@@ -51,6 +53,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tip-resume-drawer {
+  &__field {
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+  }
+
   .v-navigation-drawer {
     transition-property: transform, visibility, width, height;
 

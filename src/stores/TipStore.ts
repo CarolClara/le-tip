@@ -3,11 +3,11 @@ import { defineStore } from "pinia";
 export const useTipStore = defineStore("tip", {
   state: () => ({
     amount: 0,
-    tipBrlAmount: 0,
-    currency: "usd",
-    tipPercent: 10,
     consumerTotal: 2,
+    currency: "usd",
     loading: false,
+    tipBrlAmount: 0,
+    tipPercent: 10,
   }),
   actions: {
     tipAmount() {

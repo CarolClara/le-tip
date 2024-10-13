@@ -29,7 +29,7 @@
         v-if="!isMobile"
         class="tip-calc-view-container__resume__card col-12 col-lg-6"
       >
-        <tip-calculator-resume-card />
+        <tip-resume-card />
       </div>
 
       <div v-else class="tip-calc-view-container__resume__drawer">
@@ -57,7 +57,7 @@ import { BaseSlider } from "@/components/base";
 import {
   CurrencyButtonToggle,
   MonetaryInput,
-  TipCalculatorResumeCard,
+  TipResumeCard,
   TipResumeDrawer,
 } from "@/components/custom";
 
@@ -68,7 +68,7 @@ export default defineComponent({
     BaseSlider,
     CurrencyButtonToggle,
     MonetaryInput,
-    TipCalculatorResumeCard,
+    TipResumeCard,
     TipResumeDrawer,
   },
   data: () => ({

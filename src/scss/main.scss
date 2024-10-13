@@ -5,6 +5,8 @@
 @import 'base/colors';
 @import 'base/sizes';
 
+@import 'components/card';
+
 body {
   background-color: $background-light-grey;
   box-sizing: border-box;

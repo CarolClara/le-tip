@@ -1,29 +1,59 @@
 <template>
-  <div class="tip-calc-resume-card">
-    <v-card class="tip-calc-resume-card__field" outlined>
-      <v-card-text class="tip-calc-resume-card__field__body">
-        <v-list-item
-          v-for="(item, index) in resume"
-          :key="`${item.label.toLowerCase()}-${index}`"
-          class="tip-calc-resume-card__field__body--list-item"
-        >
-          <v-list-item-content>
-            <v-list-item-subtitle>{{ item.label }}</v-list-item-subtitle>
-            <v-list-item-title>{{ item.value }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card-text>
-    </v-card>
+  <div class="tip-resume">
+    <div
+      :class="{ 'tip-resume__card--flat': flat, 'custom-card': !flat }"
+      class="tip-resume__card"
+    >
+      <div class="tip-resume-card__body">
+        <v-list class="tip-resume-card__body__list">
+          <v-list-item
+            v-for="(item, index) in resume"
+            :key="`resume-card-item-${index}`"
+            class="tip-resume-card__body__list__item"
+          >
+            <v-list-item-content>
+              <v-list-item-subtitle>{{ item.label }}</v-list-item-subtitle>
+              <v-list-item-title>
+                {{
+                  maskMoney(
+                    item.value.toString(),
+                    currency.toUpperCase(),
+                    true,
+                    true
+                  )
+                }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item class="tip-resume-card__body__list__item">
+            <v-list-item-content>
+              <v-list-item-subtitle>Em R$</v-list-item-subtitle>
+              <v-list-item-title>
+                {{ maskMoney(tipBrlAmount.toString(), "BRL", true, true) }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+
 import { mapActions, mapState } from "pinia";
 import { useTipStore } from "@/stores/TipStore";
 
+import { maskMoney } from "@/utils/moneyMask";
+
 export default defineComponent({
-  name: "TipCalculatorResumeCard",
+  name: "TipResumeCard",
+  props: {
+    flat: { type: Boolean, default: false },
+  },
+  methods: { maskMoney },
   computed: {
     resume() {
       return [
@@ -31,21 +61,18 @@ export default defineComponent({
         { label: "Gorjeta", value: this.tipAmount },
         { label: "Total", value: this.total },
         { label: "Por pessoa", value: this.amountPerConsume },
-        { label: "Em R$", value: this.tipBrlAmount },
       ];
     },
-    ...mapState(useTipStore, ["amount", "tipBrlAmount"]),
+    ...mapState(useTipStore, ["amount", "tipBrlAmount", "currency"]),
     ...mapActions(useTipStore, ["total", "tipAmount", "amountPerConsume"]),
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.tip-calc-resume-card {
-  &__field {
-    &__body {
-      margin: auto;
-    }
-  }
+.tip-resume__card {
+  padding: 0 24px;
+  width: fit-content;
+  margin: auto;
 }
 </style>

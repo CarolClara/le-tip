@@ -1,8 +1,23 @@
-const maskMoney = function (value: string, currency: string) {
+const maskMoney = function (
+  value: string,
+  currency: string,
+  isFloatNumber = false,
+  withCurrency = false
+) {
+  let config: Intl.NumberFormatOptions = {
+    minimumFractionDigits: 2,
+  };
+  let format = parseFloat(value);
+
+  if (!isFloatNumber) {
+    format = format / 100;
+  }
+  if (withCurrency) {
+    config = { style: "currency", currency: currency };
+  }
+
   if (value?.length > 0) {
-    return Intl.NumberFormat(currency, {
-      minimumFractionDigits: 2,
-    }).format(parseFloat(value) / 100);
+    return Intl.NumberFormat(currency, config).format(format);
   }
   return "0.00";
 };
