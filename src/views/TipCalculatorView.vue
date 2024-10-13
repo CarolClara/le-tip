@@ -39,7 +39,7 @@
           style="margin-top: auto; margin-left: auto"
           @click="openResume = !openResume"
         >
-          <v-icon>mdi-chevron-right-circle</v-icon>
+          <v-icon size="32px">mdi-chevron-right-circle</v-icon>
         </v-btn>
         <tip-resume-drawer v-model="openResume" />
       </div>
