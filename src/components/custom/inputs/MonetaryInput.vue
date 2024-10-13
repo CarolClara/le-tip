@@ -56,8 +56,7 @@ export default defineComponent({
       this.handleEmit();
     },
     handleEmit() {
-      this.$emit("update:amount:masked", this.maskMoneyFormat(this.amount));
-      this.$emit("update:amount:unmasked", this.amount);
+      this.$emit("update:amount", this.getAmountRawValue());
     },
     maskMoneyFormat(monetaryValue) {
       if (monetaryValue?.length > 0) {
@@ -74,6 +73,9 @@ export default defineComponent({
           .replace(",", "")
           .replace(/[^0-9,.-]/g, "");
       }
+    },
+    getAmountRawValue() {
+      return parseFloat(this.model.replaceAll(",", ""));
     },
   },
   watch: {
