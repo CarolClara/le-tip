@@ -13,6 +13,8 @@
   "dependencies": {
     "@volar/language-server": "2.4.0-alpha.18",
     "@vue/language-server": "2.0.28",
+    "axios": "^1.7.7",
+    "date-fns": "^4.1.0",
     "install": "^0.13.0",
     "npm": "^10.9.0",
     "pinia": "^2.0.16",

@@ -9,8 +9,8 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: () => import("../views/TipView.vue"),
+      name: "tip-calculator",
+      component: () => import("../views/TipCalculatorView.vue"),
     },
   ],
 });
