@@ -51,7 +51,7 @@
 import { defineComponent } from "vue";
 import { mapStores } from "pinia";
 
-import { useTipStore } from "@/state/TipStore";
+import { useTipStore } from "@/stores/TipStore";
 
 import { BaseSlider } from "@/components/base";
 import {

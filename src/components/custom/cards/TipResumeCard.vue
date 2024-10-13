@@ -20,7 +20,7 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "pinia";
-import { useTipStore } from "@/state/TipStore";
+import { useTipStore } from "@/stores/TipStore";
 
 export default defineComponent({
   name: "TipCalculatorResumeCard",
