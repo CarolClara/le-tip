@@ -15,7 +15,7 @@
           icon
           @click="model = !model"
         >
-          <v-icon>mdi-chevron-left-circle</v-icon>
+          <v-icon size="32px">mdi-chevron-left-circle</v-icon>
         </v-btn>
       </div>
     </v-navigation-drawer>
