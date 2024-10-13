@@ -117,6 +117,10 @@ export default defineComponent({
   flex-wrap: wrap;
   height: 100%;
 
+  &__controls {
+    padding: 12px 8vw;
+  }
+
   &__resume {
     &__drawer {
       align-self: flex-end;
