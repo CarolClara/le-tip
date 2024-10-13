@@ -1,51 +1,47 @@
-# le-tip
+# Le/Tip
 
-This template should help get you started developing with Vue 3 in Vite.
+## Calculadora de Gorjetas
 
-## Recommended IDE Setup
+### Tecnologias
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+![VueJS](https://img.shields.io/badge/Vue.js-2.7.16-green)
+![Axios](https://img.shields.io/badge/Typescript-4.7.4-blue)
+![VueRouter](https://img.shields.io/badge/Vite-3.0.2-blueviolet)
+![Vuex](https://img.shields.io/badge/Pinia-2.0.16-yellow)
+![Buefy](https://img.shields.io/badge/Sass-1.79.5-violet)
+![Docker](https://img.shields.io/badge/Vuetify-2.6.0-blue)
 
-## Type Support for `.vue` Imports in TS
+###### Este é um desafio da [Convenia](https://github.com/convenia)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+> SPA responsivo usando o framework `Vue.js 2` e `Vuetify` para cálculo de Gorjetas.
+>
+> Se trata de uma calculadora de gorjetas onde é inserido o total da conta, a porcentagem da gorjeta e quantas pessoas
+> vão dividir a conta.
+>
+> O total da conta, o total da gorjeta e o total divido entre as pessoas pode ser exibido tanto em USD (Dólar) quanto
+> em EUR (Euro).
+>
+> O total que será pago por cada pessoa também é exibido em BRL (R$), obtido via chamada (REST).
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Rodando o Projeto
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Ambiente de desenvolvimento
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Compilando para produção
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
+### Análise de código [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
