@@ -17,6 +17,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { maskMoney, rawValue, unmaskMoney } from "@/utils/moneyMask";
 
 export default defineComponent({
   name: "MonetaryInput",
@@ -38,12 +39,12 @@ export default defineComponent({
     model: {
       get: function () {
         if (this.amount?.length > 0) {
-          return this.maskMoneyFormat(this.amount);
+          return this.handleMask(this.amount);
         }
         return this.amount;
       },
       set: function (newValue) {
-        this.$data.amount = this.unmaskMoneyFormat(newValue);
+        this.$data.amount = this.handleUnmask(newValue);
       },
     },
   },
@@ -56,26 +57,13 @@ export default defineComponent({
       this.handleEmit();
     },
     handleEmit() {
-      this.$emit("update:amount", this.getAmountRawValue());
+      this.$emit("update:amount", rawValue(this.model));
     },
-    maskMoneyFormat(monetaryValue) {
-      if (monetaryValue?.length > 0) {
-        return Intl.NumberFormat(this.currencyLocale[this.currency], {
-          minimumFractionDigits: 2,
-        }).format(parseFloat(monetaryValue) / 100);
-      }
+    handleMask(monetaryValue) {
+      return maskMoney(monetaryValue, this.currencyLocale[this.currency]);
     },
-    unmaskMoneyFormat(monetaryValue) {
-      if (monetaryValue?.length > 0) {
-        const value = monetaryValue.toLocaleString();
-        return value
-          .replaceAll(".", "")
-          .replace(",", "")
-          .replace(/[^0-9,.-]/g, "");
-      }
-    },
-    getAmountRawValue() {
-      return parseFloat(this.model.replaceAll(",", ""));
+    handleUnmask(monetaryValue) {
+      return unmaskMoney(monetaryValue);
     },
   },
   watch: {
