@@ -4,7 +4,7 @@
       <currency-button-toggle @update:currency="handleCurrencyChange" />
       <monetary-input
         :currency="tipStore.currency"
-        @update:amount="handleValueChange"
+        @update:amount="handleAmountChange"
       />
 
       <base-slider
@@ -13,6 +13,7 @@
         label="Gorjeta"
         max="20"
         min="10"
+        @input="handleSliderChange"
       />
 
       <base-slider
@@ -22,6 +23,7 @@
         max="16"
         min="2"
         min-label="02"
+        @input="handleSliderChange"
       />
     </div>
     <template class="tip-calc-view-container__resume">
@@ -88,15 +90,19 @@ export default defineComponent({
   methods: {
     handleCurrencyChange(currency) {
       this.tipStore.currency = currency;
+      this.convertAmountToBrlCurrency();
     },
-    handleValueChange(amount) {
+    handleAmountChange(amount) {
       this.tipStore.amount = amount;
-      this.getBrlAmount();
+      this.convertAmountToBrlCurrency();
     },
-    getBrlAmount() {
+    handleSliderChange() {
+      this.convertAmountToBrlCurrency();
+    },
+    convertAmountToBrlCurrency() {
       this.tipStore.loading = true;
       convertToBrlCurrency({
-        amount: parseFloat(this.tipStore.tipAmount()),
+        amount: parseFloat(this.tipStore.amountPerConsume()),
         currency: this.tipStore.currency,
       })
         .then((result) => {
