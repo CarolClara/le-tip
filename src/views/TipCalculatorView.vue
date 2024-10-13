@@ -106,8 +106,8 @@ export default defineComponent({
         currency: this.tipStore.currency,
       })
         .then((result) => {
-          const [{ quoteAmount }] = result;
-          this.tipStore.tipBrlAmount = quoteAmount;
+          const { quote_amount } = result;
+          this.tipStore.tipBrlAmount = quote_amount;
         })
         .finally(() => {
           this.tipStore.loading = false;

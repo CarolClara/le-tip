@@ -11,32 +11,16 @@ export interface IConvertPayload {
 export async function convertToBrlCurrency(payload: IConvertPayload) {
   const { amount, currency, date } = payload;
 
-  const graphqlQuery = {
-    query: `query ConvertToBRL($amount: BigDecimal!, $currency: String!, $currencies: [String!], $date: Date) {
-      convert(
-        amount: $amount,
-        baseCurrency: $currency,
-        quoteCurrencies: $currencies,
-        date: $date
-      ) {
-        quoteAmount
-      }
-    }`,
-    variables: {
-      amount: amount,
-      currency: currency.toUpperCase(),
-      currencies: ["BRL"],
-      date: date || format(new Date(), "yyyy-MM-dd"),
-    },
-  };
-
   return new Promise((resolve, reject) => {
-    swop({
-      method: "post",
-      data: { ...graphqlQuery },
-    })
+    swop
+      .get(`/conversions/${currency.toUpperCase()}/BRL`, {
+        params: {
+          amount: amount,
+          date: date || format(new Date(), "yyyy-MM-dd"),
+        },
+      })
       .then((response) => {
-        resolve(response.data.data.convert);
+        resolve(response.data);
       })
       .catch((error) => {
         console.log(error);
