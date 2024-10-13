@@ -9,6 +9,7 @@
       @input="handleInput"
     >
       <div class="tip-resume-drawer__field__body">
+        <app-header />
         <tip-resume-card class="tip-resume-drawer__field__body__card" flat />
         <v-btn
           class="tip-resume-drawer__field__body__btn"
@@ -24,11 +25,13 @@
 
 <script>
 import { defineComponent } from "vue";
+
+import AppHeader from "@/components/custom/headers/AppHeader.vue";
 import TipResumeCard from "@/components/custom/cards/TipResumeCard.vue";
 
 export default defineComponent({
   name: "TipResumeDrawer",
-  components: { TipResumeCard },
+  components: { AppHeader, TipResumeCard },
   props: {
     value: { type: Boolean, required: true },
   },
