@@ -8,8 +8,10 @@
 body {
   background-color: $background-light-grey;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-  padding: 16px;
+
+  .v-application {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
 }
